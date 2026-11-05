@@ -39,11 +39,11 @@
 
 :root {
   /* ---------- Colors ---------- */
-  --bg:      #F2EADF;  /* beige — background */
-  --surface: #E8DDCD;  /* deeper beige — cards and panels sitting on the background */
-  --ink:     #5E2750;  /* plum — main text (9.4:1 contrast on beige) */
-  --accent:  #1C1A19;  /* black — accent (a warm soft black, 14.5:1 on beige) */
-  --muted:   #76866A;  /* sage — secondary text (3.3:1 on beige: use at 28px and up) */
+  --bg:      #E6D7BF;  /* beige — background (warm sand, so it never reads as white) */
+  --surface: #DCCAAE;  /* deeper beige — cards and panels sitting on the background */
+  --ink:     #5E2750;  /* plum — main text (7.9:1 contrast on beige) */
+  --accent:  #1C1A19;  /* black — accent (a warm soft black, 12.3:1 on beige) */
+  --muted:   #68785D;  /* sage — secondary text (3.4:1 on beige: use at 28px and up) */
 
   /* ---------- Fonts ---------- */
   --font-display:    "Playfair Display", Georgia, serif;   /* headlines */
