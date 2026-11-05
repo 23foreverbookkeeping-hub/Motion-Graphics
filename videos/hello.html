@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Hello from my studio</title>
+<link rel="stylesheet" href="../brand.css">
+<script src="../lib/motion.js"></script>
+<style>
+  #stage {
+    position: relative;
+    width: 1920px; height: 1080px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    background: radial-gradient(ellipse at 50% 60%, var(--surface), var(--bg) 70%);
+  }
+  .line { display: flex; gap: 0.28em; font-family: var(--font-display);
+          font-weight: 800; font-size: 150px; letter-spacing: -0.03em; line-height: 1.05; }
+  .word { display: inline-block; overflow: hidden; padding: 0 0.02em 0.12em; }
+  .word span { display: inline-block; will-change: transform; }
+  .accent { color: var(--accent); }
+  #bar { width: 0; height: 10px; margin-top: 36px; border-radius: 5px;
+         background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="line">
+    <div class="word"><span>Hello</span></div>
+    <div class="word"><span>from</span></div>
+    <div class="word"><span>my</span></div>
+    <div class="word"><span class="accent">studio</span></div>
+  </div>
+  <div id="bar"></div>
+</div>
+
+<script>
+  window.DURATION = 3;
+  window.SIZE = [1920, 1080];
+
+  const words = [...document.querySelectorAll('.word span')];
+  const bar = document.getElementById('bar');
+  const stage = document.getElementById('stage');
+
+  window.render = (t) => {
+    const { tween, easeOutExpo, easeOutCubic, easeInCubic } = M;
+
+    // Words rise into view one after another.
+    words.forEach((el, i) => {
+      const start = 0.15 + i * 0.12;
+      const y = tween(t, start, start + 0.7, 110, 0, easeOutExpo);
+      el.style.transform = `translateY(${y}%)`;
+    });
+
+    // Gradient bar wipes out under the line.
+    bar.style.width = tween(t, 0.8, 1.6, 0, 920, easeOutCubic) + 'px';
+
+    // Everything settles, then fades and drifts up at the end.
+    const out = tween(t, 2.45, 3.0, 0, 1, easeInCubic);
+    stage.style.opacity = 1 - out;
+    stage.style.transform = `translateY(${-40 * out}px)`;
+  };
+</script>
+</body>
+</html>

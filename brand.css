@@ -1,0 +1,37 @@
+/* ============================================================
+   brand.css — your colors and fonts, in one place.
+   Every video links this file, so a change here restyles all of them.
+   Swap the values below for your brand; keep the variable names.
+   ============================================================ */
+
+:root {
+  /* Colors */
+  --bg:        #0E1116;  /* background */
+  --surface:   #171B22;  /* cards, panels */
+  --ink:       #F4F1EA;  /* main text */
+  --muted:     #8A93A3;  /* secondary text */
+  --accent:    #FF6B3D;  /* primary brand color */
+  --accent-2:  #4CC9F0;  /* secondary brand color */
+
+  /* Fonts — installed locally, so renders never wait on the network */
+  --font-display: "Inter Display", "Inter", "DejaVu Sans", sans-serif;
+  --font-body:    "Inter", "DejaVu Sans", sans-serif;
+  --font-mono:    "DejaVu Sans Mono", monospace;
+}
+
+/* Base stage: the page is exactly the video frame, nothing scrolls. */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* No CSS animations or transitions anywhere: render(t) owns every frame. */
+*, *::before, *::after {
+  animation: none !important;
+  transition: none !important;
+}
