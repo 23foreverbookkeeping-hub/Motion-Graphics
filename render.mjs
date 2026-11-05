@@ -29,11 +29,13 @@ const opt = (name, fallback) => {
 };
 const fps = Number(opt('fps', 30));
 const stillsArg = opt('stills', null);
+const atArg = opt('at', null); // e.g. --at 2.5,14.9 → stills at exact times
 const stills = stillsArg === null ? 0 : Number(stillsArg);
 const input = args[0];
 
-if (!input || !Number.isFinite(fps) || fps <= 0 || (stillsArg !== null && !(stills >= 1))) {
-  console.error('Usage: node render.mjs <video.html | name> [--stills N] [--fps 30]');
+const atTimes = atArg === null ? [] : atArg.split(',').map(Number);
+if (!input || !Number.isFinite(fps) || fps <= 0 || (stillsArg !== null && !(stills >= 1)) || atTimes.some(x => !Number.isFinite(x) || x < 0)) {
+  console.error('Usage: node render.mjs <video.html | name> [--stills N | --at t1,t2] [--fps 30]');
   process.exit(1);
 }
 
@@ -106,17 +108,20 @@ async function run() {
     return page.screenshot({ type: 'png', animations: 'disabled', caret: 'hide' });
   };
 
-  if (stills) {
-    // Evenly spaced through the video, centered in each slice: for 3 stills
-    // of a 3 s video that's t = 0.5, 1.5, 2.5. Snapped to real frame times.
+  if (stills || atTimes.length) {
+    // --stills N: evenly spaced, centered in each slice (3 stills of a 3 s
+    // video → t = 0.5, 1.5, 2.5). --at: exact times. Snapped to real frames.
     const dir = path.join(outDir, 'stills');
     mkdirSync(dir, { recursive: true });
-    for (let i = 0; i < stills; i++) {
-      const frame = Math.min(totalFrames - 1, Math.floor(((i + 0.5) / stills) * totalFrames));
-      const t = frame / fps;
+    const frames = atTimes.length
+      ? atTimes.map(x => Math.min(totalFrames - 1, Math.round(x * fps)))
+      : Array.from({ length: stills }, (_, i) => Math.min(totalFrames - 1, Math.floor(((i + 0.5) / stills) * totalFrames)));
+    const n = frames.length;
+    for (let i = 0; i < n; i++) {
+      const t = frames[i] / fps;
       const p = path.join(dir, `${name}-${String(i + 1).padStart(2, '0')}-t${t.toFixed(2)}s.png`);
       writeFileSync(p, await drawAt(t));
-      console.log(`  still ${i + 1}/${stills}  t=${t.toFixed(2)}s  → ${path.relative(ROOT, p)}`);
+      console.log(`  still ${i + 1}/${n}  t=${t.toFixed(2)}s  → ${path.relative(ROOT, p)}`);
     }
     await browser.close();
     return;

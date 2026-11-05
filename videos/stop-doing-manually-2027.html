@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>3 Things You Must Stop Doing Manually in 2027</title>
+<link rel="stylesheet" href="../brand.css">
+<script src="../lib/motion.js"></script>
+<style>
+  /* 1080×1920 Reel. Facebook covers roughly the top 13% and bottom 32% with UI,
+     plus a strip on the right for buttons, so all text lives in the safe box
+     x 90–950, y 250–1300. */
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; }
+  .layer { position: absolute; left: 90px; right: 130px; }
+  .reveal { will-change: transform, opacity; }
+  .head, .sub, #end .name2 { text-wrap: balance; }
+
+  /* Scene 1: title */
+  #title { top: 360px; text-align: center; transform-origin: 50% 0; }
+  #title .words { font-family: var(--font-display); font-weight: 700; font-size: 112px;
+                  line-height: 1.08; letter-spacing: -0.01em; color: var(--ink); }
+  #title .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 0.02em 0.1em; }
+  #title .w > span { display: inline-block; }
+  #title .yearline { display: flex; justify-content: center; align-items: baseline; gap: 26px; margin-top: 10px; }
+  #title .in   { font-family: var(--font-script); font-weight: 400; font-size: 150px; line-height: 1.25; color: var(--ink); }
+  #title .year { font-size: 230px; line-height: 1; color: var(--accent); letter-spacing: -0.02em; }
+  #title .rule { width: 340px; height: 4px; margin: 46px auto 0; background: var(--muted); transform-origin: 50% 50%; }
+
+  /* Scenes 2–4: header + steps */
+  #header { top: 260px; text-align: center; font-family: var(--font-display); font-weight: 700;
+            font-size: 50px; line-height: 1.2; color: var(--ink); }
+  #header b { color: var(--accent); }
+  #header .rule { width: 160px; height: 3px; margin: 26px auto 0; background: var(--muted); transform-origin: 50% 50%; }
+
+  #steps { top: 500px; }
+  .step { position: relative; display: grid; grid-template-columns: 150px 1fr; column-gap: 34px;
+          align-items: start; margin-bottom: 64px; }
+  .num { font-family: var(--font-display); font-weight: 700; font-size: 168px; line-height: .8;
+         color: var(--accent); text-align: center; padding-top: 6px; transform-origin: 50% 60%; }
+  .head { font-family: var(--font-display); font-weight: 700; font-size: 56px; line-height: 1.12; color: var(--ink); }
+  .sub  { margin-top: 16px; font-family: var(--font-body); font-weight: 500; font-size: 33px; line-height: 1.35; color: var(--muted); }
+  .link { position: absolute; left: 75px; width: 4px; margin-left: -2px; background: var(--muted); transform-origin: 50% 0; }
+
+  /* Scene 5: end card */
+  #end { top: 520px; text-align: center; }
+  #end .name1 { font-family: var(--font-display); font-weight: 700; font-size: 150px; line-height: 1; color: var(--ink); letter-spacing: -0.01em; }
+  #end .name2 { margin-top: 18px; font-family: var(--font-display); font-weight: 600; font-size: 66px; line-height: 1.15; color: var(--ink); }
+  #end .rule  { width: 220px; height: 4px; margin: 54px auto 46px; background: var(--muted); transform-origin: 50% 50%; }
+  #end .cta   { font-family: var(--font-script); font-size: 96px; line-height: 1.1; color: var(--accent); }
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <div class="layer" id="title">
+    <div class="words">
+      <span class="w"><span>3</span></span> <span class="w"><span>Things</span></span><br>
+      <span class="w"><span>You</span></span> <span class="w"><span>Must</span></span> <span class="w"><span>Stop</span></span><br>
+      <span class="w"><span>Doing</span></span> <span class="w"><span>Manually</span></span><br>
+      <span class="yearline"><span class="w in"><span>in</span></span><span class="w year"><span>2027</span></span></span>
+    </div>
+    <div class="rule"></div>
+  </div>
+
+  <div class="layer reveal" id="header">
+    3 Things You Must Stop Doing<br>Manually in <b>2027</b>
+    <div class="rule"></div>
+  </div>
+
+  <div class="layer" id="steps">
+    <div class="step">
+      <div class="num reveal">1</div>
+      <div><div class="head reveal">Categorizing your own bank feeds.</div>
+           <div class="sub reveal">Offload the ledger to an Advanced ProAdvisor</div></div>
+    </div>
+    <div class="step">
+      <div class="num reveal">2</div>
+      <div><div class="head reveal">Answering every single incoming phone call.</div>
+           <div class="sub reveal">Deploy an AI Voice Agent to capture leads 24/7</div></div>
+    </div>
+    <div class="step">
+      <div class="num reveal">3</div>
+      <div><div class="head reveal">Chasing down unpaid invoices.</div>
+           <div class="sub reveal">Automate your Accounts Receivable</div></div>
+    </div>
+  </div>
+
+  <div class="layer" id="end">
+    <div class="name1 reveal">23 Forever</div>
+    <div class="name2 reveal">Bookkeeping &amp; Solutions</div>
+    <div class="rule"></div>
+    <div class="cta reveal">Link in bio to book<br>your consultation!</div>
+  </div>
+
+</div>
+<script>
+  window.DURATION = 15;
+  window.SIZE = [1080, 1920];
+
+  const $ = s => document.querySelector(s);
+  const $$ = s => [...document.querySelectorAll(s)];
+  const titleWords = $$('#title .w > span');
+  const steps = $$('.step');
+  const stepsBox = $('#steps');
+
+  // Sage connector lines between the numbers (geometry measured once, after fonts load).
+  const links = steps.slice(1).map(() => {
+    const el = document.createElement('div'); el.className = 'link'; stepsBox.appendChild(el); return el;
+  });
+  let measured = false;
+  const measure = () => {
+    steps.slice(1).forEach((s, i) => {
+      const prevNum = steps[i].querySelector('.num');
+      const top = steps[i].offsetTop + prevNum.offsetTop + prevNum.offsetHeight + 22;
+      const bottom = s.offsetTop - 18;
+      links[i].style.top = top + 'px';
+      links[i].style.height = Math.max(0, bottom - top) + 'px';
+    });
+    measured = true;
+  };
+
+  const ease = M.easeOutCubic;
+  const rise = (el, t, start, dur = 0.7, dist = 30) => {
+    const p = ease(M.progress(t, start, dur));
+    el.style.opacity = p;
+    el.style.transform = `translateY(${(1 - p) * dist}px)`;
+  };
+
+  // Timeline (seconds)
+  const T = {
+    titleIn: 0.1, titleOut: 3.0,
+    headerIn: 3.25,
+    steps: [3.7, 6.5, 9.3],
+    listOut: 11.9,
+    endIn: 12.3,
+  };
+
+  window.render = (t) => {
+    if (!measured) measure();
+    const { progress, tween, easeOutExpo, easeOutBack, easeInOutCubic, easeInCubic } = M;
+
+    // Scene 1: title words rise in, then the block lifts away as the header arrives.
+    titleWords.forEach((el, i) => {
+      const p = easeOutExpo(progress(t, T.titleIn + i * 0.07, 0.6));
+      el.style.transform = `translateY(${(1 - p) * 110}%)`;
+    });
+    $('#title .rule').style.transform = `scaleX(${easeOutExpo(progress(t, 1.1, 0.9))})`;
+    const tOut = easeInOutCubic(progress(t, T.titleOut, 0.7));
+    const title = $('#title');
+    title.style.opacity = 1 - tOut;
+    title.style.transform = `translateY(${-170 * tOut}px) scale(${1 - 0.5 * tOut})`;
+
+    // Scene 2: header settles at the top.
+    $('#header .rule').style.transform = `scaleX(${easeOutExpo(progress(t, T.headerIn + 0.3, 0.8))})`;
+
+    // Scenes 2–4: steps arrive one at a time and stay.
+    steps.forEach((s, i) => {
+      const st = T.steps[i];
+      const num = s.querySelector('.num');
+      const pn = progress(t, st, 0.75);
+      num.style.opacity = Math.min(1, pn * 2.5);
+      num.style.transform = `scale(${0.55 + 0.45 * easeOutBack(pn, 1.4)})`;
+      rise(s.querySelector('.head'), t, st + 0.15, 0.75, 36);
+      rise(s.querySelector('.sub'), t, st + 0.45, 0.75, 24);
+      if (i > 0) links[i - 1].style.transform = `scaleY(${easeInOutCubic(progress(t, st - 0.35, 0.5))})`;
+    });
+
+    // Scene 5: list drifts up and away while the end card rises in. No cuts.
+    const out = easeInOutCubic(progress(t, T.listOut, 0.65));
+    $('#steps').style.opacity = 1 - out;
+    $('#steps').style.transform = `translateY(${-70 * out}px)`;
+    const hIn = ease(progress(t, T.headerIn, 0.7));
+    $('#header').style.opacity = hIn * (1 - out);
+    $('#header').style.transform = `translateY(${-24 * (1 - hIn) - 70 * out}px)`;
+
+    rise($('#end .name1'), t, T.endIn, 0.9, 50);
+    rise($('#end .name2'), t, T.endIn + 0.2, 0.9, 40);
+    $('#end .rule').style.transform = `scaleX(${easeOutExpo(progress(t, T.endIn + 0.5, 0.9))})`;
+    rise($('#end .cta'), t, T.endIn + 0.7, 1.0, 30);
+  };
+</script>
+</body>
+</html>
