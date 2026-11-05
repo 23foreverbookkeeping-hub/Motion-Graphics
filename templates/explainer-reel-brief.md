@@ -4,6 +4,7 @@ Copy everything below the line, replace each [BRACKET], and send it to Claude.
 The answers to questions Claude asked last time are already built in, so it can go straight to the storyboard.
 
 First used for: `videos/stop-doing-manually-2027.html` → `out/stop-doing-manually-2027.mp4`
+Also used for: `bookkeeping-mistakes`, `outgrown-diy-bookkeeping`, `monthly-reports` (built on the shared layout `lib/explainer-reel.js`: a new video is just a `window.REEL` list of words).
 
 ---
 
