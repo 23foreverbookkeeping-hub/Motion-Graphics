@@ -30,6 +30,7 @@ Rules that keep every render identical:
 | Path | What it is |
 |---|---|
 | `brand.css` | Colors and fonts as CSS variables, plus the base stage styles |
+| `fonts/` | Bundled brand fonts (Playfair Display, Great Vibes, Dancing Script, Inter), OFL licensed, so renders work offline |
 | `lib/motion.js` | `M.tween`, `M.progress`, easing curves |
 | `videos/` | One HTML file per video |
 | `render.mjs` | Playwright + ffmpeg renderer |

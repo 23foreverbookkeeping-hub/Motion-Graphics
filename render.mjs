@@ -74,6 +74,9 @@ page.on('console', m => { if (m.type() === 'error') pageErrors.push(m.text()); }
 
 await page.goto(pathToFileURL(file).href, { waitUntil: 'load' });
 await page.evaluate(async () => {
+  // Load every @font-face up front (not only those already on screen), so a
+  // font that first appears mid-video is ready on its very first frame.
+  await Promise.all([...document.fonts].map(f => f.load().catch(() => {})));
   await document.fonts.ready;
   if (window.ready instanceof Promise) await window.ready; // optional hook for async assets
 });

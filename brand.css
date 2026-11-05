@@ -1,22 +1,56 @@
 /* ============================================================
    brand.css — your colors and fonts, in one place.
    Every video links this file, so a change here restyles all of them.
-   Swap the values below for your brand; keep the variable names.
    ============================================================ */
 
-:root {
-  /* Colors */
-  --bg:        #0E1116;  /* background */
-  --surface:   #171B22;  /* cards, panels */
-  --ink:       #F4F1EA;  /* main text */
-  --muted:     #8A93A3;  /* secondary text */
-  --accent:    #FF6B3D;  /* primary brand color */
-  --accent-2:  #4CC9F0;  /* secondary brand color */
+/* ---------- Fonts (bundled in /fonts, so renders work offline) ---------- */
+/* All four are free Google Fonts under the SIL Open Font License (see fonts/OFL-*.txt). */
 
-  /* Fonts — installed locally, so renders never wait on the network */
-  --font-display: "Inter Display", "Inter", "DejaVu Sans", sans-serif;
-  --font-body:    "Inter", "DejaVu Sans", sans-serif;
-  --font-mono:    "DejaVu Sans Mono", monospace;
+@font-face {
+  font-family: "Playfair Display";
+  src: url("fonts/PlayfairDisplay-Variable.ttf") format("truetype");
+  font-weight: 400 900; font-style: normal; font-display: block;
+}
+@font-face {
+  font-family: "Playfair Display";
+  src: url("fonts/PlayfairDisplay-Italic-Variable.ttf") format("truetype");
+  font-weight: 400 900; font-style: italic; font-display: block;
+}
+@font-face {
+  font-family: "Great Vibes";
+  src: url("fonts/GreatVibes-Regular.ttf") format("truetype");
+  font-weight: 400; font-style: normal; font-display: block;
+}
+@font-face {
+  font-family: "Dancing Script";
+  src: url("fonts/DancingScript-Variable.ttf") format("truetype");
+  font-weight: 400 700; font-style: normal; font-display: block;
+}
+@font-face {
+  font-family: "Inter Brand"; /* bundled copy, so a machine's own Inter can't change the look */
+  src: url("fonts/Inter-Variable.ttf") format("truetype");
+  font-weight: 100 900; font-style: normal; font-display: block;
+}
+@font-face {
+  font-family: "Inter Brand";
+  src: url("fonts/Inter-Italic-Variable.ttf") format("truetype");
+  font-weight: 100 900; font-style: italic; font-display: block;
+}
+
+:root {
+  /* ---------- Colors ---------- */
+  --bg:      #F2EADF;  /* beige — background */
+  --surface: #E8DDCD;  /* deeper beige — cards and panels sitting on the background */
+  --ink:     #5E2750;  /* plum — main text (9.4:1 contrast on beige) */
+  --accent:  #1C1A19;  /* black — accent (a warm soft black, 14.5:1 on beige) */
+  --muted:   #76866A;  /* sage — secondary text (3.3:1 on beige: use at 28px and up) */
+
+  /* ---------- Fonts ---------- */
+  --font-display:    "Playfair Display", Georgia, serif;   /* headlines */
+  --font-script:     "Great Vibes", cursive;               /* accent script */
+  --font-script-alt: "Dancing Script", cursive;            /* alternate accent script */
+  --font-body:       "Inter Brand", "Inter", sans-serif;   /* body text */
+  --font-mono:       "DejaVu Sans Mono", monospace;
 }
 
 /* Base stage: the page is exactly the video frame, nothing scrolls. */
