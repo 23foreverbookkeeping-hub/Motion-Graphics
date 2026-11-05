@@ -1,0 +1,44 @@
+/* lib/explainer-reel.css — layout for 9:16 "title → numbered steps → end card" videos.
+   Safe for Facebook/Instagram Reels and Stories: all text stays inside
+   x 90–950, y 250–1300 (clear of top bars, captions, reply box and side buttons). */
+
+#stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; }
+.layer { position: absolute; left: 90px; right: 130px; }
+.reveal { will-change: transform, opacity; }
+.head, .sub, #header .text, #end .name2 { text-wrap: balance; }
+
+/* Scene 1: title. Each line is centered and shrinks to fit if it's too wide. */
+#title { top: 360px; text-align: center; transform-origin: 50% 0; }
+#title .line { display: flex; justify-content: center; align-items: baseline; flex-wrap: nowrap;
+               column-gap: 0.25em; font-family: var(--font-display); font-weight: 700; font-size: 112px;
+               line-height: 1.08; letter-spacing: -0.01em; color: var(--ink); white-space: nowrap; }
+#title .w { display: inline-block; overflow: hidden; vertical-align: top;
+            padding: 0 0.02em 0.1em; }
+#title .w > span { display: inline-block; }
+#title .line.has-big { margin-top: 10px; }
+#title .line.has-script { margin-top: 14px; }
+#title .script { font-family: var(--font-script); font-weight: 400; font-size: 1.34em; line-height: 1.25; color: var(--ink); letter-spacing: 0; }
+#title .big    { font-size: 2.05em; line-height: 1; color: var(--accent); letter-spacing: -0.02em; }
+#title .rule { width: 340px; height: 4px; margin: 46px auto 0; background: var(--muted); transform-origin: 50% 50%; }
+
+/* Scenes 2–4: header + steps */
+#header { top: 260px; text-align: center; font-family: var(--font-display); font-weight: 700;
+          font-size: 50px; line-height: 1.2; color: var(--ink); }
+#header b { color: var(--accent); }
+#header .rule { width: 160px; height: 3px; margin: 26px auto 0; background: var(--muted); transform-origin: 50% 50%; }
+
+#steps { top: 500px; }
+.step { position: relative; display: grid; grid-template-columns: 150px 1fr; column-gap: 34px;
+        align-items: start; margin-bottom: 64px; min-height: 200px; }
+.num  { font-family: var(--font-display); font-weight: 700; font-size: 168px; line-height: .8;
+        color: var(--accent); text-align: center; padding-top: 6px; transform-origin: 50% 60%; }
+.head { font-family: var(--font-display); font-weight: 700; font-size: 56px; line-height: 1.12; color: var(--ink); }
+.sub  { margin-top: 16px; font-family: var(--font-body); font-weight: 500; font-size: 33px; line-height: 1.35; color: var(--muted); }
+.link { position: absolute; left: 75px; width: 4px; margin-left: -2px; background: var(--muted); transform-origin: 50% 0; }
+
+/* Scene 5: end card */
+#end { top: 520px; text-align: center; }
+#end .name1 { font-family: var(--font-display); font-weight: 700; font-size: 150px; line-height: 1; color: var(--ink); letter-spacing: -0.01em; }
+#end .name2 { margin-top: 18px; font-family: var(--font-display); font-weight: 600; font-size: 66px; line-height: 1.15; color: var(--ink); }
+#end .rule  { width: 220px; height: 4px; margin: 54px auto 46px; background: var(--muted); transform-origin: 50% 50%; }
+#end .cta   { font-family: var(--font-script); font-size: 96px; line-height: 1.1; color: var(--accent); }
