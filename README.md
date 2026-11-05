@@ -33,6 +33,7 @@ Rules that keep every render identical:
 | `fonts/` | Bundled brand fonts (Playfair Display, Great Vibes, Dancing Script, Inter), OFL licensed, so renders work offline |
 | `lib/motion.js` | `M.tween`, `M.progress`, easing curves |
 | `videos/` | One HTML file per video |
+| `templates/` | Reusable briefs with [brackets] for the parts that change |
 | `render.mjs` | Playwright + ffmpeg renderer |
 | `out/` | Rendered MP4s (committed). `out/stills/` is ignored by git |
 
